@@ -1,21 +1,38 @@
 {
-  "name": "Reading thing",
+	"name": "Reading thing",
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "Injecting stuff",
   "homepage_url": "http://temp.atm",
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": true
-  },
-  "browser_action": {
-    "default_title": "Inject!"
-  },
-  "permissions": [
-    "https://*/*",
-    "http://*/*",
-    "tabs"
-  ]
+	"background":{
+		"scripts":["bg.js"]
+        },
+	"browser_action": {
+		"default_icon": {
+			"16": "icons/wasp16.png",
+			"24": "icons/wasp24.png",
+			"32": "icons/wasp32.png"
+		},
+		"default_title": "Apply gradients",
+		"default_popup": "menu/index.html"
+	},
+	"icons": {
+		"16": "icons/wasp16.png",
+		"48": "icons/wasp48.png",
+		"128": "icons/wasp128.png"
+	},
+	"content_scripts": [{
+    "css": ["styles.css"],
+    "matches": ["<all_urls>"],
+    "js": ["readability.js"]
+  }],
+	"permissions": [
+		"activeTab",
+		"storage",
+		"http://*/",
+		"https://*/"
+	],
+	"web_accessible_resources": [
+    "readability.js"
+	]
 }
